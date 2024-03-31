@@ -12,7 +12,7 @@ pipeline {
     stage ('Deploy') {
       steps {
         script {
-          sh 'start java -jar target/sprinboot-restapi-0.0.1-SNAPSHOT.jar'
+          sh 'nohup java -jar target/sprinboot-restapi-0.0.1-SNAPSHOT.jar'
         }
       }
     }
