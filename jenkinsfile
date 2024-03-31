@@ -1,12 +1,4 @@
 pipeline {
-    agent any
-
-    tools {
-        maven 'maven'
-        jdk 'JAVA_HOME'
-    }
-
-    stages {pipeline {
   agent any
   tools {
     maven 'maven'
@@ -20,7 +12,7 @@ pipeline {
     stage ('Deploy') {
       steps {
         script {
-       sh 'java -jar C:/ProgramData/Jenkins/.jenkins/workspace/demo3/target/sprinboot-restapi-0.0.1-SNAPSHOT.jar'
+       sh 'java -jar C:\ProgramData\Jenkins\.jenkins\workspace\demo3\target\sprinboot-restapi-0.0.1-SNAPSHOT.jar'
         }
       }
     }
@@ -28,39 +20,6 @@ pipeline {
   post { 
         always { 
             cleanWs()
-        }
-    }
-}
-
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
-        stage('Build') {
-            steps {
-                sh 'mvn clean package'
-            }
-            post {
-                success {
-                    archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
-                }
-            }
-        }
-
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-               script {
-          sh 'nohup java -jar target/sprinboot-restapi-0.0.1-SNAPSHOT.jar'
-        }
-            }
         }
     }
 }
